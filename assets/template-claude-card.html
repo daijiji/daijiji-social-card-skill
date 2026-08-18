@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="claude-canvas">
+<head>
+  <meta charset="utf-8">
+  <title>[必填] 替换为社交卡组标题 · Claude Warm Editorial Card Set</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* =========================================================
+       Claude Warm Editorial — Social Card Seed Template
+       ---------------------------------------------------------
+       Anthropic Claude 产品视觉语言 · 暖奶油 + 珊瑚 + 深海军
+       ---------------------------------------------------------
+       Three boards built in one HTML:
+         .poster.xhs      1080×1440  (3:4   小红书)
+         .poster.square   1080×1080  (1:1   微信方封面)
+         .poster.wide     2100× 900  (21:9  微信主封面)
+         .pair-preview                       21:9 + 1:1 配对预览
+
+       Theme switching via <html data-theme="…">:
+         claude-canvas | coral-callout | dark-product | forest-warm | midnight-claude
+
+       Fill posters where marked <!-- POSTERS_HERE -->.
+       Each poster carries one Layout Recipe (C01-C14) from
+       references/layout-recipes.md.
+       ========================================================= */
+
+    /* ---------- 1. Theme tokens ---------- */
+    /* Claude Canvas (default) — 奶油画布 + 珊瑚 + 深海军 */
+    :root,
+    [data-theme="claude-canvas"] {
+      --canvas:           #faf9f5;
+      --surface-soft:     #f5f0e8;
+      --surface-card:     #efe9de;
+      --surface-cream:    #e8e0d2;
+      --ink:              #141413;
+      --body:             #3d3d3a;
+      --body-strong:      #252523;
+      --muted:            #6c6a64;
+      --muted-soft:       #8e8b82;
+      --hairline:         #e6dfd8;
+      --hairline-soft:    #ebe6df;
+
+      --coral:            #cc785c;
+      --coral-active:     #a9583e;
+      --coral-soft:       #e6dfd8;
+      --coral-on:         #ffffff;
+      --navy:             #181715;
+      --navy-elevated:    #252320;
+      --navy-soft:        #1f1e1b;
+      --navy-on:          #faf9f5;
+      --navy-on-soft:     #a09d96;
+      --accent-teal:      #5db8a6;
+      --accent-amber:     #e8a55a;
+
+      --ink-rgb:          20,20,19;
+      --canvas-rgb:       250,249,245;
+      --coral-rgb:        204,120,92;
+      --navy-rgb:         24,23,21;
+    }
+
+    /* Coral Callout — 珊瑚满铺强调版,单页 callout 用 */
+    [data-theme="coral-callout"] {
+      --canvas:           #cc785c;
+      --surface-soft:     #c46e52;
+      --surface-card:     #b86347;
+      --surface-cream:    #a9583e;
+      --ink:              #faf9f5;
+      --body:             #f5ede4;
+      --body-strong:      #ffffff;
+      --muted:            #e6dfd8;
+      --muted-soft:       #d8cfc2;
+      --hairline:         rgba(250,249,245,.22);
+      --hairline-soft:    rgba(250,249,245,.12);
+
+      --coral:            #faf9f5;
+      --coral-active:     #efe9de;
+      --coral-soft:       #e8e0d2;
+      --coral-on:         #141413;
+      --navy:             #181715;
+      --navy-elevated:    #252320;
+      --navy-soft:        #1f1e1b;
+      --navy-on:          #faf9f5;
+      --navy-on-soft:     #a09d96;
+      --accent-teal:      #5db8a6;
+      --accent-amber:     #e8a55a;
+
+      --ink-rgb:          250,249,245;
+      --canvas-rgb:       204,120,92;
+      --coral-rgb:        250,249,245;
+      --navy-rgb:         24,23,21;
+    }
+
+    /* Dark Product — 深海军为主,代码/产品 mockup 用 */
+    [data-theme="dark-product"] {
+      --canvas:           #181715;
+      --surface-soft:     #1f1e1b;
+      --surface-card:     #252320;
+      --surface-cream:    #2a2825;
+      --ink:              #faf9f5;
+      --body:             #d8d4cc;
+      --body-strong:      #ffffff;
+      --muted:            #a09d96;
+      --muted-soft:       #6c6a64;
+      --hairline:         rgba(250,249,245,.14);
+      --hairline-soft:    rgba(250,249,245,.08);
+
+      --coral:            #cc785c;
+      --coral-active:     #a9583e;
+      --coral-soft:       #3a3530;
+      --coral-on:         #ffffff;
+      --navy:             #faf9f5;
+      --navy-elevated:    #efe9de;
+      --navy-soft:        #e8e0d2;
+      --navy-on:          #141413;
+      --navy-on-soft:     #6c6a64;
+      --accent-teal:      #5db8a6;
+      --accent-amber:     #e8a55a;
+
+      --ink-rgb:          250,249,245;
+      --canvas-rgb:       24,23,21;
+      --coral-rgb:        204,120,92;
+      --navy-rgb:         250,249,245;
+    }
+
+    /* Forest Warm — 暖奶油 + 森林墨绿,户外/自然用 */
+    [data-theme="forest-warm"] {
+      --canvas:           #faf9f5;
+      --surface-soft:     #f5f0e8;
+      --surface-card:     #efe9de;
+      --surface-cream:    #e8e0d2;
+      --ink:              #141413;
+      --body:             #3d3d3a;
+      --body-strong:      #252523;
+      --muted:            #6c6a64;
+      --muted-soft:       #8e8b82;
+      --hairline:         #e6dfd8;
+      --hairline-soft:    #ebe6df;
+
+      --coral:            #2e6b4f;
+      --coral-active:     #245540;
+      --coral-soft:       #d4dfd2;
+      --coral-on:         #ffffff;
+      --navy:             #181715;
+      --navy-elevated:    #252320;
+      --navy-soft:        #1f1e1b;
+      --navy-on:          #faf9f5;
+      --navy-on-soft:     #a09d96;
+      --accent-teal:      #5db8a6;
+      --accent-amber:     #e8a55a;
+
+      --ink-rgb:          20,20,19;
+      --canvas-rgb:       250,249,245;
+      --coral-rgb:        46,107,79;
+      --navy-rgb:         24,23,21;
+    }
+
+    /* Midnight Claude — 唯一深色 Editorial,游戏 key art/夜景/电影感用 */
+    [data-theme="midnight-claude"] {
+      --canvas:           #181715;
+      --surface-soft:     #1f1e1b;
+      --surface-card:     #252320;
+      --surface-cream:    #2a2825;
+      --ink:              #faf9f5;
+      --body:             #d8d4cc;
+      --body-strong:      #ffffff;
+      --muted:            #a09d96;
+      --muted-soft:       #6c6a64;
+      --hairline:         rgba(250,249,245,.14);
+      --hairline-soft:    rgba(250,249,245,.08);
+
+      --coral:            #cc785c;
+      --coral-active:     #a9583e;
+      --coral-soft:       #3a3530;
+      --coral-on:         #ffffff;
+      --navy:             #faf9f5;
+      --navy-elevated:    #efe9de;
+      --navy-soft:        #e8e0d2;
+      --navy-on:          #141413;
+      --navy-on-soft:     #6c6a64;
+      --accent-teal:      #5db8a6;
+      --accent-amber:     #e8a55a;
+
+      --ink-rgb:          250,249,245;
+      --canvas-rgb:       24,23,21;
+      --coral-rgb:        204,120,92;
+      --navy-rgb:         250,249,245;
+    }
+
+    /* ---------- 2. Typography stack (混合方案) ---------- */
+    :root {
+      --serif-en: "Cormorant Garamond", "EB Garamond", Garamond, "Times New Roman", serif;
+      --serif-zh: "Noto Serif SC", "Songti SC", "STSong", serif;
+      --sans-en: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono:    "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+      /* Spacing tokens (4px base, 2x scale) */
+      --sp-3:  8px;
+      --sp-4:  12px;
+      --sp-5:  16px;
+      --sp-6:  24px;
+      --sp-7:  32px;
+      --sp-8:  40px;
+      --sp-9:  48px;
+      --sp-10: 64px;
+      --sp-11: 80px;
+      --sp-12: 96px;
+      --sp-13: 160px;
+
+      /* Border radius scale */
+      --r-xs:   4px;
+      --r-sm:   6px;
+      --r-md:   8px;
+      --r-lg:   12px;
+      --r-xl:   16px;
+      --r-pill: 9999px;
+      --r-full: 9999px;
+    }
+
+    /* ---------- 3. Reset & sheet ---------- */
+    *,*::before,*::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #1a1a1a;
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 64px 32px;
+    }
+    .sheet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+    }
+
+    /* ---------- 4. Poster boards (fixed export sizes) ---------- */
+    .poster {
+      position: relative;
+      background: var(--canvas);
+      color: var(--ink);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .poster.xhs    { width: 1080px; height: 1440px; }
+    .poster.square { width: 1080px; height: 1080px; }
+    .poster.wide   { width: 2100px; height:  900px; }
+    .poster figure { margin: 0; }
+
+    /* Default content padding by board */
+    .poster.xhs    .content { padding: 96px 88px; }
+    .poster.square .content { padding: 88px 88px; }
+    .poster.wide   .content { padding: 88px 120px; }
+    .content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- 5. Background layers (paper grain + coral glow) ---------- */
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .32;
+      mix-blend-mode: multiply;
+      background-image: radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);
+      background-size: 3px 3px;
+    }
+    .paper-wash {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(80% 50% at 28% 16%, rgba(var(--coral-rgb),.06), transparent 64%),
+        radial-gradient(70% 60% at 80% 86%, rgba(var(--ink-rgb),.04), transparent 72%),
+        linear-gradient(180deg, rgba(var(--ink-rgb),.02), rgba(var(--ink-rgb),.04) 60%, rgba(var(--ink-rgb),.06));
+    }
+
+    /* Coral Callout — flip grain to overlay, paper-wash to coral-on-coral */
+    [data-theme="coral-callout"] .grain {
+      opacity: .18;
+      mix-blend-mode: overlay;
+      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+    }
+    [data-theme="coral-callout"] .paper-wash {
+      background:
+        radial-gradient(80% 50% at 28% 16%, rgba(255,255,255,.10), transparent 64%),
+        radial-gradient(70% 60% at 80% 86%, rgba(24,23,21,.18), transparent 72%);
+    }
+
+    /* Dark Product — screen-mode warm specks, coral glow + shadow */
+    [data-theme="dark-product"] .grain {
+      opacity: .22;
+      mix-blend-mode: screen;
+      background-image: radial-gradient(rgba(250,249,245,.10) 1px, transparent 1px);
+    }
+    [data-theme="dark-product"] .paper-wash {
+      background:
+        radial-gradient(80% 50% at 28% 16%, rgba(204,120,92,.10), transparent 64%),
+        radial-gradient(70% 60% at 80% 86%, rgba(0,0,0,.30), transparent 72%),
+        linear-gradient(180deg, rgba(250,249,245,.02), rgba(0,0,0,.20));
+    }
+
+    /* Forest Warm — moss radial */
+    [data-theme="forest-warm"] .paper-wash {
+      background:
+        radial-gradient(80% 50% at 28% 16%, rgba(46,107,79,.08), transparent 64%),
+        radial-gradient(70% 60% at 80% 86%, rgba(24,23,21,.06), transparent 72%),
+        linear-gradient(180deg, rgba(20,20,19,.02), rgba(20,20,19,.04) 60%, rgba(20,20,19,.06));
+    }
+
+    /* Midnight Claude — screen-mode warm specks, gilt + shadow vignette */
+    [data-theme="midnight-claude"] .grain {
+      opacity: .26;
+      mix-blend-mode: screen;
+      background-image: radial-gradient(rgba(250,249,245,.10) 1px, transparent 1px);
+    }
+    [data-theme="midnight-claude"] .paper-wash {
+      background:
+        radial-gradient(80% 50% at 28% 16%, rgba(204,120,92,.12), transparent 64%),
+        radial-gradient(70% 60% at 80% 86%, rgba(0,0,0,.30), transparent 72%),
+        linear-gradient(180deg, rgba(250,249,245,.02), rgba(0,0,0,.32));
+    }
+
+    /* ---------- 6. Typography roles ----------
+       Claude Warm Editorial: "the larger, the lighter."
+       Display titles weight 400-500 + negative tracking.
+       Body sans, captions mono. Serif character is the brand voice. */
+    .kicker {
+      font-family: var(--mono);
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(var(--ink-rgb), .55);
+      margin: 0 0 18px;
+    }
+    .h-display {
+      font-family: var(--serif-en), var(--serif-zh), serif;
+      font-weight: 500;
+      font-size: 124px;
+      line-height: 1.06;
+      letter-spacing: -.04em;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    .h-xl {
+      font-family: var(--serif-en), var(--serif-zh), serif;
+      font-weight: 500;
+      font-size: 88px;
+      line-height: 1.10;
+      letter-spacing: -.03em;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    .h-md {
+      font-family: var(--serif-en), var(--serif-zh), serif;
+      font-weight: 500;
+      font-size: 56px;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+    .h-sub {
+      font-family: var(--serif-en), serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 1.3;
+      letter-spacing: -.01em;
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+    .lead {
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.55;
+      color: var(--body-strong);
+      margin: 0 0 24px;
+    }
+    .body {
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 1.65;
+      color: var(--body);
+      margin: 0 0 18px;
+    }
+    .meta {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(var(--ink-rgb), .55);
+    }
+    .label {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(var(--ink-rgb), .55);
+    }
+    .pullquote {
+      font-family: var(--serif-en), var(--serif-zh), serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 64px;
+      line-height: 1.28;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .num-mega {
+      font-family: var(--sans-en), sans-serif;
+      font-weight: 200;
+      font-size: 200px;
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .num-xl {
+      font-family: var(--sans-en), sans-serif;
+      font-weight: 200;
+      font-size: 144px;
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .img-cap {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--muted);
+      margin: 12px 0 0;
+    }
+
+    /* Square and wide auto-shrink */
+    .poster.square .h-display { font-size: 108px; }
+    .poster.square .h-xl      { font-size: 78px; }
+    .poster.square .h-md      { font-size: 48px; }
+    .poster.square .pullquote { font-size: 56px; }
+    .poster.square .num-mega  { font-size: 168px; }
+    .poster.wide .h-display   { font-size: 132px; }
+    .poster.wide .h-xl        { font-size: 96px; }
+    .poster.wide .h-md        { font-size: 60px; }
+    .poster.wide .pullquote   { font-size: 72px; }
+    .poster.wide .num-mega    { font-size: 220px; }
+
+    /* ---------- 7. Issue labels & metadata ---------- */
+    .issue-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(var(--ink-rgb), .55);
+      margin: 0 0 32px;
+    }
+    .issue-row .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--coral);
+      display: inline-block;
+    }
+    .issue-strip {
+      margin-top: auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--hairline);
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(var(--ink-rgb), .55);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .issue-strip .sep {
+      color: var(--coral);
+      margin: 0 4px;
+    }
+
+    /* ---------- 8. Layout primitives ---------- */
+    .stack { display: flex; flex-direction: column; }
+    .row   { display: flex; flex-direction: row; }
+    .gap-1 { gap: 12px; }
+    .gap-2 { gap: 16px; }
+    .gap-3 { gap: 24px; }
+    .gap-4 { gap: 32px; }
+    .gap-5 { gap: 48px; }
+    .gap-6 { gap: 24px; }
+    .gap-7 { gap: 32px; }
+    .gap-8 { gap: 40px; }
+    .gap-9 { gap: 48px; }
+    .gap-10 { gap: 64px; }
+
+    .col-6-6 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .col-7-5 { display: grid; grid-template-columns: 7fr 5fr; gap: 48px; }
+    .col-8-4 { display: grid; grid-template-columns: 8fr 4fr; gap: 48px; }
+    .grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+    /* ---------- 9. Image containers ---------- */
+    .frame-img {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-card);
+      border-radius: var(--r-lg);
+    }
+    .frame-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 50%;
+      display: block;
+    }
+    .frame-img.fit-contain img { object-fit: contain; }
+
+    .r-3x4  { aspect-ratio: 3 / 4; }
+    .r-1x1  { aspect-ratio: 1 / 1; }
+    .r-4x3  { aspect-ratio: 4 / 3; }
+    .r-3x2  { aspect-ratio: 3 / 2; }
+    .r-16x9 { aspect-ratio: 16 / 9; }
+    .r-16x10 { aspect-ratio: 16 / 10; }
+    .r-21x9 { aspect-ratio: 21 / 9; }
+
+    /* ---------- 10. Screenshot containers ---------- */
+    .frame-shot {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-card);
+      border-radius: var(--r-lg);
+      padding: 24px;
+    }
+    .frame-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center 50%;
+      display: block;
+    }
+    .device-browser {
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 0;
+      overflow: hidden;
+    }
+    .device-browser::before {
+      content: "";
+      display: block;
+      height: 36px;
+      background: var(--navy-elevated);
+      border-bottom: 1px solid rgba(var(--navy-rgb),.2);
+    }
+    .device-phone {
+      background: var(--navy);
+      border-radius: 36px;
+      padding: 12px;
+      overflow: hidden;
+    }
+    .device-phone .frame-shot {
+      border-radius: 28px;
+      background: var(--navy-soft);
+    }
+
+    /* ---------- 11. Card fills (mutually exclusive) ---------- */
+    .card-cream {
+      background: var(--surface-card);
+      color: var(--ink);
+      border-radius: var(--r-lg);
+      padding: 32px;
+    }
+    .card-cream-strong {
+      background: var(--surface-cream);
+      color: var(--ink);
+      border-radius: var(--r-lg);
+      padding: 32px;
+    }
+    .card-navy {
+      background: var(--navy);
+      color: var(--navy-on);
+      border-radius: var(--r-lg);
+      padding: 32px;
+    }
+    .card-navy .h-xl,
+    .card-navy .h-md,
+    .card-navy .h-display { color: var(--navy-on); }
+    .card-navy .body,
+    .card-navy .lead { color: var(--navy-on-soft); }
+    .card-navy .meta,
+    .card-navy .label,
+    .card-navy .kicker { color: rgba(var(--navy-rgb),.55); }
+    .card-coral {
+      background: var(--coral);
+      color: var(--coral-on);
+      border-radius: var(--r-lg);
+      padding: 48px;
+    }
+    .card-coral .h-xl,
+    .card-coral .h-md,
+    .card-coral .h-display { color: var(--coral-on); }
+    .card-coral .body,
+    .card-coral .lead { color: rgba(255,255,255,.88); }
+    .card-coral .meta,
+    .card-coral .label,
+    .card-coral .kicker { color: rgba(255,255,255,.75); }
+    .card-outlined {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-lg);
+      padding: 32px;
+    }
+
+    /* ---------- 12. Buttons & links ---------- */
+    .btn-coral {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--coral);
+      color: var(--coral-on);
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 12px 20px;
+      height: 40px;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-cream {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 12px 20px;
+      height: 40px;
+      border: 1px solid var(--hairline);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy-elevated);
+      color: var(--navy-on);
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      padding: 12px 20px;
+      height: 40px;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .link-coral {
+      color: var(--coral);
+      text-decoration: none;
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-weight: 500;
+    }
+    .link-coral:hover { text-decoration: underline; }
+
+    /* ---------- 13. Badges ---------- */
+    .badge-cream {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface-card);
+      color: var(--ink);
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+    }
+    .badge-coral {
+      display: inline-flex;
+      align-items: center;
+      background: var(--coral);
+      color: var(--coral-on);
+      font-family: var(--sans-en), var(--sans-zh), sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+    }
+
+    /* ---------- 14. Anthropic spike-mark ---------- */
+    .spike {
+      display: inline-block;
+      vertical-align: middle;
+      color: currentColor;
+    }
+
+    /* ---------- 15. Hairline rules ---------- */
+    .rule {
+      border: none;
+      border-top: 1px solid var(--hairline);
+      margin: 24px 0;
+    }
+    .rule-coral {
+      border: none;
+      border-top: 2px solid var(--coral);
+      margin: 24px 0;
+      width: 48px;
+    }
+
+    /* ---------- 16. Pair preview (WeChat 21:9 + 1:1) ---------- */
+    .pair-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 48px;
+      background: #2a2a2a;
+      border-radius: var(--r-lg);
+    }
+    .pair-preview .pair-row {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .pair-preview .pair-label {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 12px;
+    }
+
+    /* ---------- 17. Lucide icon defaults ---------- */
+    [data-lucide] {
+      stroke-width: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- POSTERS_HERE -->
+    <!-- 示例占位海报 — 替换为你的 Layout Recipe (C01-C14) -->
+    <section class="poster xhs">
+      <div class="grain"></div>
+      <div class="paper-wash"></div>
+      <div class="content">
+        <div class="issue-row">
+          <span>Vol. 01</span>
+          <span class="dot"></span>
+          <span>2026.05</span>
+          <span class="dot"></span>
+          <span>Claude Warm Editorial</span>
+        </div>
+        <h1 class="h-xl">替换为<br>你的标题</h1>
+        <p class="lead">这是 Claude 暖编辑种子模板。奶油画布 + 珊瑚强调 + 深海军产品面。</p>
+        <div class="issue-strip">
+          <span>Claude</span>
+          <span class="sep">—</span>
+          <span>Anthropic</span>
+          <span class="sep">—</span>
+          <span>Warm Editorial</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 配对预览示例 (微信 21:9 + 1:1) -->
+    <div class="pair-preview">
+      <div class="pair-label">WeChat Cover Pair Preview</div>
+      <div class="pair-row">
+        <div>
+          <div class="pair-label">21:9 Main Cover</div>
+          <section class="poster wide" style="width: 1050px; height: 450px;">
+            <div class="grain"></div>
+            <div class="paper-wash"></div>
+            <div class="content">
+              <h1 class="h-xl">主封面标题</h1>
+            </div>
+          </section>
+        </div>
+        <div>
+          <div class="pair-label">1:1 Square Cover</div>
+          <section class="poster square" style="width: 540px; height: 540px;">
+            <div class="grain"></div>
+            <div class="paper-wash"></div>
+            <div class="content">
+              <h1 class="h-display" style="text-align: center; margin: auto;">短标题</h1>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
